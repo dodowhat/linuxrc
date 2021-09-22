@@ -1,6 +1,9 @@
 # bashrc
 
+alias ls='ls --color'
+
 export PS1="\[\033[38;5;11m\]\u\[$(tput sgr0)\]@\h:\[$(tput sgr0)\]\[\033[38;5;6m\][\w]\[$(tput sgr0)\]: \[$(tput sgr0)\]"
+
 setxkbmap -option "ctrl:nocaps"
 
 alias cfw='~/Portable/cfw/cfw > /dev/null 2>&1 & disown'
