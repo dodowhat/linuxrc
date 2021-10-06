@@ -1,12 +1,14 @@
 ! Applying config: xrdb ~/.Xresources
 
-URxvt.scrollBar: false
+Xft.dpi: 192
 
 URxvt.font: xft:Sarasa Mono SC:pixelsize=28
 URxvt.boldFont: xft:Sarasa Mono SC:pixelsize=28:weight=bold
 
 URxvt.background: Black
 URxvt.foreground: White
+
+URxvt.scrollBar: false
 
 !! Tango color theme
 URxvt.color0: rgb:00/00/00
@@ -26,6 +28,4 @@ URxvt.color13: rgb:AD/7F/A8
 URxvt.color14: rgb:34/E2/E2
 URxvt.color15: rgb:EE/EE/EC
 URxvt.colorBD: rgb:ff/ff/ff
-
-Xft.dpi: 192
 
