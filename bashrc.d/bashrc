@@ -4,8 +4,17 @@ if command -v setxkbmap &> /dev/null; then
     setxkbmap -option "ctrl:nocaps"
 fi
 
-export PS1="\[\033[38;5;11m\]\u\[$(tput sgr0)\]@\h:\[$(tput sgr0)\]\[\033[38;5;6m\][\w]\[$(tput sgr0)\]: \[$(tput sgr0)\]"
+git_branch() {
+    local GIT_BRANCH=$(git branch 2> /dev/null | grep '^*')
+    if [[ "$GIT_BRANCH" == "" ]]; then
+        echo $GIT_BRANCH;
+    else
+        echo "($GIT_BRANCH)";
+    fi
+}
 
-alias proxyon='export https_proxy=http://127.0.0.1:7890'
-alias proxyoff='unset https_proxy'
+export PS1="\[\033[38;5;11m\]\u\[$(tput sgr0)\]\[\033[38;5;15m\]@\h:\[$(tput sgr0)\]\[\033[38;5;6m\][\w]\$(git_branch)\[$(tput sgr0)\]\[\033[38;5;15m\]: \[$(tput sgr0)\]"
+
+alias proxy-on='export https_proxy=http://127.0.0.1:7890'
+alias proxy-off='unset https_proxy'
 
