@@ -1,27 +1,18 @@
-# .bashrc
+# ~/bashrc.d/bashrc
 
-# Source global definitions
-if [ -f /etc/bashrc ]; then
-	. /etc/bashrc
+if command -v setxkbmap &> /dev/null; then
+    setxkbmap -option "ctrl:nocaps"
 fi
 
-# User specific environment
-if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]
-then
-    PATH="$HOME/.local/bin:$HOME/bin:$PATH"
-fi
-export PATH
+git_branch() {
+    local GIT_BRANCH=$(git branch 2> /dev/null | grep '^*')
+    if [[ "$GIT_BRANCH" == "" ]]; then
+        echo $GIT_BRANCH;
+    else
+        echo "($GIT_BRANCH)";
+    fi
+}
 
-# Uncomment the following line if you don't like systemctl's auto-paging feature:
-# export SYSTEMD_PAGER=
+alias proxy-on='export https_proxy=http://127.0.0.1:7890'
+alias proxy-off='unset https_proxy'
 
-# User specific aliases and functions
-if [ -d ~/.bashrc.d ]; then
-	for rc in ~/.bashrc.d/*; do
-		if [ -f "$rc" ]; then
-			. "$rc"
-		fi
-	done
-fi
-
-unset rc

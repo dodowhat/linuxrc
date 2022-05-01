@@ -31,9 +31,11 @@ install_bashrc_d() {
         mkdir $bashrc_dst
     fi
 
-    printf "cleaning $bashrc_dst ... "
-    rm $bashrc_dst/*
-    printf "success\n"
+    if [[ -f $bashrc_dst ]];then
+        printf "cleaning $bashrc_dst ... "
+        rm $bashrc_dst/*
+        printf "success\n"
+    fi
 
     printf "creating symlink from $bashrc_src/* to $bashrc_dst/* ... "
     for rc in $bashrc_src/*; do
@@ -48,9 +50,11 @@ install_i3() {
     i3conf_src=$dir/i3.conf
     i3conf_dst=~/.config/i3/config
 
-    printf "cleaning $i3conf_dst ... "
-    rm $i3conf_dst
-    printf "success\n"
+    if [[ -f $i3conf_dst ]];then
+        printf "cleaning $i3conf_dst ... "
+        rm $i3conf_dst
+        printf "success\n"
+    fi
 
     printf "creating symlink from $i3conf_src to $i3conf_dst ... "
     ln -s $i3conf_src $i3conf_dst
@@ -62,9 +66,11 @@ install_i3() {
         mkdir -p $(dirname $i3statusconf_dst)
     fi
 
-    printf "cleaning $i3statusconf_dst ... "
-    rm $i3statusconf_dst
-    printf "success\n"
+    if [[ -f $i3statusconf_dst ]];then
+        printf "cleaning $i3statusconf_dst ... "
+        rm $i3statusconf_dst
+        printf "success\n"
+    fi
 
     printf "creating symlink from $i3statusconf_src to $i3statusconf_dst ... "
     ln -s $i3statusconf_src $i3statusconf_dst
@@ -79,9 +85,11 @@ install_xresources() {
     fi
     xresources_dst=~/.Xresources
 
-    printf "cleaning $xresources_dst ... "
-    rm $xresources_dst
-    printf "success\n"
+    if [[ -f $xresources_dst ]];then
+        printf "cleaning $xresources_dst ... "
+        rm $xresources_dst
+        printf "success\n"
+    fi
 
     printf "creating symlink from $xresources_src to $xresources_dst ... "
     ln -s $xresources_src $xresources_dst
@@ -96,9 +104,11 @@ install_tmux() {
     tmux_src=$dir/tmux.conf
     tmux_dst=~/.tmux.conf
 
-    printf "cleaning $tmux_dst ... "
-    rm $tmux_dst
-    printf "success\n"
+    if [[ -f $tmux_dst ]];then
+        printf "cleaning $tmux_dst ... "
+        rm $tmux_dst
+        printf "success\n"
+    fi
 
     printf "creating symlink from $tmux_src to $tmux_dst ... "
     ln -s $tmux_src $tmux_dst
@@ -119,7 +129,7 @@ case $1 in
         install_tmux
     ;;
     *)
-        echo "usage: install.sh bashrc.d|i3|xresources"
+        echo "usage: install.sh bashrc.d|i3|xresources|tmux"
     ;;
 esac
 
