@@ -24,28 +24,6 @@ dirname() {
 
 dir=$(dirname $(realpath $0))
 
-install_bashrc_d() {
-    bashrc_src=$dir/bashrc.d
-    bashrc_dst=~/.bashrc.d
-    if [ ! -d $bashrc_dst ]; then
-        mkdir $bashrc_dst
-    fi
-
-    if [[ -f $bashrc_dst ]];then
-        printf "cleaning $bashrc_dst ... "
-        rm $bashrc_dst/*
-        printf "success\n"
-    fi
-
-    printf "creating symlink from $bashrc_src/* to $bashrc_dst/* ... "
-    for rc in $bashrc_src/*; do
-        if [ -f "$rc" ]; then
-            ln -s $rc $bashrc_dst/
-        fi
-    done
-    printf "success\n"
-}
-
 install_i3() {
     i3conf_src=$dir/i3.conf
     i3conf_dst=~/.config/i3/config
@@ -116,9 +94,6 @@ install_tmux() {
 }
 
 case $1 in
-    "bashrc.d")
-        install_bashrc_d
-    ;;
     "i3")
         install_i3
     ;;
