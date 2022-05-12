@@ -1,7 +1,7 @@
 # ~/bashrc.d/bashrc
 
 if command -v setxkbmap &> /dev/null; then
-    if [ -n "$DISPLAY" ]; then
+    if [ -n "$DISPLAY" ] && [ "$XDG_SESSION_TYPE" != "wayland" ]; then
         setxkbmap -option "ctrl:nocaps"
     fi
 fi
